@@ -1,0 +1,15 @@
+name: Keep Supabase Alive
+
+on:
+  schedule:
+    - cron: "0 10 */3 * *"
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase
+        run: |
+          curl -s -o /dev/null -w "%{http_code}" \
+            -H "apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im56ZXRsaWdnbWZocWFpcnZicml3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg4NDUyNzcsImV4cCI6MjA2NDQyMTI3N30.igHl8A6bE5pS6X4PPHGC3s6QqJ2pPguPJYgW-HNFD5k" \
+            "https://nzetliggmfhqairvbriw.supabase.co/rest/v1/cursos_ks?select=id&limit=1"
